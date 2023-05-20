@@ -9,9 +9,8 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
-    """Returns a dictionary with all objects or a dictionary with all
-    objects of a specified class.
-    """
+        """Returns a dictionary with all objects or a dictionary with all
+        objects of a specified class."""
         if cls is not None:
             objects_dict = {}
             for k, v in self.__objects.items():
@@ -60,7 +59,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-    """Deletes an object from __objects if it exists"""
+        """Deletes an object from __objects if it exists"""
         if obj is not None:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
             if key in self.__objects:
