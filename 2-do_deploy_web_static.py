@@ -5,7 +5,7 @@ from fabric.api import hosts, put, run, env
 
 env.hosts = ['54.236.12.12', '54.82.134.241']
 def do_deploy(archive_path):
-    """distributes an archive to your web servers"""
+    """Distributes an archive to your web servers"""
     try:
         if os.path.isfile(archive-path) == False:
             return False
