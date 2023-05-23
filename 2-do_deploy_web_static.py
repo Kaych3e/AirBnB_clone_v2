@@ -6,22 +6,22 @@ from fabric.api import hosts, put, run, env
 env.hosts = ['54.236.12.12', '54.82.134.241']
 def do_deploy(archive_path):
     """Distributes an archive to your web servers"""
-    try:
-        if os.path.isfile(archive-path) == False:
+    if os.path.isfile(archive_path) == False:
             return False
 
-        """Upload the archive to the /tmp/ directory and extract file name"""
+    try:
+        """Upload the archive to the /tmp/ directory in web server"""
         put(archive_path, '/tmp/')
-        f_name = archive_path.split('/')[-1].split('.')[0]
 
-        """Uncompress the archive and create directory"""
-        f_path = "/data/web_static/releases/{}".format(f_name)
-        run("mkdir {}".format(f_path))
-        run("tar -xzf /tmp/{archive_path.split('/')[-1]} -C {}".format(f_path))
+        """Extract filename, Uncompress the archive and create directory"""
+        f_name =  os.path.basename(archive_path)
+        f_path = "/data/web_static/releases/" + f_name.split('.')[0]
+        run("mkdir -p {}".format(f_path))
+        run("tar -xzf /tmp/{} -C {}".format(f_name, f_path))
         
         """delete archive and symbolic link"""
-        run("rm /tmp/{}".format(archive_path.split('/')[-1]))
-        run("rm /data/web_static/current")
+        run("rm /tmp/{}".format(f_name))
+        run("rm -rf /data/web_static/current")
 
         """Create new symbollic link"""
         run("ln -s {} /data/web_static/current".format(f_path))
