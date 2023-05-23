@@ -1,7 +1,29 @@
 #!/usr/bin/python3
 """ Fabric script that distributes an archive to your web servers """
 import os
-from fabric.api import hosts, put, run, env
+from fabric.api import *
+from datettome import datetime
+
+def do_pack():
+    """ Create tar archive of web_static directory """
+    if os.path.isdir("versions") is False:
+        if local('mkdir -p versions').failed is True:
+            return None
+
+    t = datetime.utcnow()
+    f_name = "versions/web_static_{}{}{}{}{}{}.tgz".format(t.year,
+                                                           t.month,
+                                                           t.day,
+                                                           t.hour,
+                                                           t.minute,
+                                                           t.second)
+
+    with cd("versions"):
+        if local("tar -cvzf {} web_static".format(f_name)).failed is True:
+            return None
+
+        return f_name
+
 
 env.hosts = ['54.236.12.12', '54.82.134.241']
 
