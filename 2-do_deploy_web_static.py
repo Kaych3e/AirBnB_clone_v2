@@ -4,9 +4,11 @@ import os
 from fabric.api import hosts, put, run, env
 
 env.hosts = ['54.236.12.12', '54.82.134.241']
+
+
 def do_deploy(archive_path):
     """Distributes an archive to your web servers"""
-    if os.path.isfile(archive_path) == False:
+    if os.path.isfile(archive_path) is False:
             return False
 
     try:
@@ -18,7 +20,7 @@ def do_deploy(archive_path):
         f_path = "/data/web_static/releases/" + f_name.split('.')[0]
         run("mkdir -p {}".format(f_path))
         run("tar -xzf /tmp/{} -C {}".format(f_name, f_path))
-        
+
         """delete archive and symbolic link from web server"""
         run("rm /tmp/{}".format(f_name))
         run("mv /data/web_static/releases/{}/web_static/*\
