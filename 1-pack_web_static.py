@@ -13,7 +13,12 @@ def do_pack():
             return None
 
     t = datetime.utcnow()
-    f_name = f"versions/web_static_{t.year}{t.month}{t.day}{t.hour}{t.minute}{t.second}.tgz"
+    f_name = "versions/web_static_{}{}{}{}{}{}.tgz".format(t.year,
+                                                           t.month,
+                                                           t.day,
+                                                           t.hour,
+                                                           t.minute,
+                                                           t.second)
 
     with cd("versions"):
         if local("tar -cvzf {} web_static".format(f_name)).failed == True:
