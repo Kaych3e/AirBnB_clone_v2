@@ -19,8 +19,10 @@ def do_deploy(archive_path):
         run("mkdir -p {}".format(f_path))
         run("tar -xzf /tmp/{} -C {}".format(f_name, f_path))
         
-        """delete archive and symbolic link"""
+        """delete archive and symbolic link from web server"""
         run("rm /tmp/{}".format(f_name))
+        run("mv /data/web_static/releases/{}/web_static/*\
+                /data/web_static/releases/{}/".format(f_name, f-name))
         run("rm -rf /data/web_static/current")
 
         """Create new symbollic link"""
