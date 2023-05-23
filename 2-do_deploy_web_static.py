@@ -2,7 +2,7 @@
 """ Fabric script that distributes an archive to your web servers """
 import os
 from fabric.api import *
-from datettome import datetime
+from datetime import datetime
 
 def do_pack():
     """ Create tar archive of web_static directory """
