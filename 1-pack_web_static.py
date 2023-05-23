@@ -6,10 +6,11 @@ from datetime import datetime
 from fabric.api import local
 from fabric.context_managers import cd
 
+
 def do_pack():
     """ Create tar archive of web_static directory """
-    if os.path.isdir("versions") == False:
-        if local('mkdir -p versions').failed == True:
+    if os.path.isdir("versions") is False:
+        if local('mkdir -p versions').failed is True:
             return None
 
     t = datetime.utcnow()
@@ -21,7 +22,7 @@ def do_pack():
                                                            t.second)
 
     with cd("versions"):
-        if local("tar -cvzf {} web_static".format(f_name)).failed == True:
+        if local("tar -cvzf {} web_static".format(f_name)).failed is True:
             return None
 
         return f_name

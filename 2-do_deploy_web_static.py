@@ -24,7 +24,7 @@ def do_deploy(archive_path):
         run("rm /data/web_static/current")
 
         """Create new symbollic link"""
-        run("ln -s {} /data/web_static/current").format(f_path)
+        run("ln -s {} /data/web_static/current".format(f_path))
 
         return True
     except:
