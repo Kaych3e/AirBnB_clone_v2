@@ -41,5 +41,11 @@ def numTemplate(n):
     return render_template("5-number.html", number=n)
 
 
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
+def oddEvenNum(n):
+    """ defines dynamic page if n is odd or even """
+    return render_template("6-number_odd_or_even.html", n=n)
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
