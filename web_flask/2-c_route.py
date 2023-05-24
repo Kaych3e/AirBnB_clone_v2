@@ -18,7 +18,7 @@ def hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def displayCtext(text):
     """ defines the displayc text replacing underscore symbols with a space """
-    return "C {}".format(text.replace('_', ''))
+    return "C {}".format(text.replace('_', ' '))
 
 
 if __name__ == "__main__":
