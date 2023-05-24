@@ -15,6 +15,7 @@ def hbnb():
     """ defines the hbnb route """
     return "HBNB"
 
+
 @app.route('/c/<text>', strict_slashes=False)
 def displayCtext(text):
     """ defines the displayc text replacing underscore symbols with a space """
